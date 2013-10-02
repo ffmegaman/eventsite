@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+	<h1> You're logged in!</h1>
+<% else %>
+
+	<div class="hero-unit">
+		<h1>Welcome to Philip's site!</h1>
+		<p>
+			You've found the homepage for
+			<%= link_to "Philip Nguyen's", "http://philipqnguyen.com" %>
+			application.
+		</p>
+
+		<p>
+			<%= link_to "Sign up now!!!", new_user_registration_path, class: "btn btn-primary btn-large" %>
+		</p>
+	</div>
+<% end %>

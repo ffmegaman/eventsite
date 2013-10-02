@@ -1,4 +1,15 @@
-Eventsite::Application.routes.draw do
+Omrails::Application.routes.draw do
+  resources :pins
+
+
+  devise_for :users
+
+  devise_for :installs
+
+  get 'about' => 'pages#about'
+
+  root :to => 'pins#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
