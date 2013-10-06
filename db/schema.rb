@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131006075218) do
+ActiveRecord::Schema.define(:version => 20131006093021) do
 
   create_table "pins", :force => true do |t|
     t.string   "description"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
     t.integer  "user_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20131006075218) do
     t.datetime "image_updated_at"
     t.string   "image_remote_url"
     t.string   "event_name"
+    t.decimal  "price",              :precision => 8, :scale => 2
   end
 
   add_index "pins", ["event_name"], :name => "index_pins_on_event_name"
