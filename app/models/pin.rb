@@ -1,7 +1,8 @@
 class Pin < ActiveRecord::Base
-  attr_accessible :description, :image, :image_remote_url
+  attr_accessible :description, :image, :image_remote_url, :event_name
 
 
+  validates :event_name, presence: true
   validates :description, presence: true
 	validates :user_id, presence: true
 	
