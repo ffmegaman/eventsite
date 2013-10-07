@@ -3,14 +3,14 @@
 		<div class="well">
 			<%= image_tag @pin.image %>
 			<p></p>
-			<p><b>
+			<h2>
 			  <%= @pin.event_name %>
-			</b></p>			
+			</h2>	
 			<p>
 			  <%= @pin.description %>
 			</p>
 			<p>
-				<%= @pin.price %>
+				<b>Admission Fee:</b> <%= @pin.price %>
 			<p>
 			  <%= @pin.user.name %>
 			</p>
