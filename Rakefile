@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Omrails::Application.load_tasks
+Eventsite::Application.load_tasks

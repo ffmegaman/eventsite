@@ -1,4 +1,4 @@
-Omrails::Application.routes.draw do
+Eventsite::Application.routes.draw do
   resources :pins
 
 
