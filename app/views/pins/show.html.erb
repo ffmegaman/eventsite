@@ -1,3 +1,11 @@
+<% if (@is_admin && (!@pin.has_valid_wepay_access_token? || !@pin.has_wepay_account?)) %>
+  <p>
+    <b>Please create an account to manage your money: </b>
+	<% redirect_uri = url_for(:controller => 'pins', :action => 'oauth', :pin_id => @pin.id, :host => request.host_with_port) %>
+    <a class="btn btn-primary" href="<%= @pin.wepay_authorization_url(redirect_uri) %>">Click here to create your account</a>
+  </p>
+<% end %>
+
 <div class="row">
 	<div class="span6 offset3">
 		<div class="well">

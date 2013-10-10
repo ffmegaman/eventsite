@@ -6,6 +6,9 @@ Eventsite::Application.routes.draw do
 
   devise_for :installs
 
+  #for wepay auth
+  match '/pins/:action(/:pin_id)', :controller => 'pins'
+
   get 'about' => 'pages#about'
 
   root :to => 'pins#index'

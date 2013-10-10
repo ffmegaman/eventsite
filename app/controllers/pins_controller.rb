@@ -1,5 +1,5 @@
 class PinsController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :authenticate_user!, except: [:index, :show, :oauth]
 
 
 
@@ -19,6 +19,7 @@ class PinsController < ApplicationController
   # GET /pins/1.json
   def show
     @pin = Pin.find(params[:id])
+    @is_admin = current_user && current_user.id == @pin.user_id
 
     respond_to do |format|
       format.html # show.html.erb
@@ -88,5 +89,26 @@ class PinsController < ApplicationController
   
   def pin_params
     params.require(:pin).permit(:event_name, :description, :image, :price)
+  end
+
+  # GET /farmers/oauth/1
+  def oauth
+    if !params[:code]
+      return redirect_to('/')
+    end
+
+    redirect_uri = url_for(:controller => 'pins', :action => 'oauth', :pin_id => params[:pin_id], :host => request.host_with_port)
+    @pin = Pin.find(params[:pin_id])
+    begin
+      @pin.request_wepay_access_token(params[:code], redirect_uri)
+    rescue Exception => e
+      error = e.message
+    end
+
+    if error
+      redirect_to @pin, alert: error
+    else
+      redirect_to @pin, notice: 'We successfully connected you to WePay!'
+    end
   end
 end
