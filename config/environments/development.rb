@@ -36,4 +36,10 @@ Omrails::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000'}
+
+    #App specific information
+  CLIENT_ID = 39380
+  CLIENT_SECRET = "5f8b4ead25"
+  USE_STAGE = true
+  WEPAY = WePay.new(CLIENT_ID, CLIENT_SECRET, USE_STAGE)
 end

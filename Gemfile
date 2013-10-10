@@ -10,6 +10,7 @@ gem 'faker'
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate'
 gem 'activemerchant'
+gem 'wepay'
 
 
 group :production do

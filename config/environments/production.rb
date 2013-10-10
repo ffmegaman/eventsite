@@ -75,4 +75,10 @@ Omrails::Application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
+
+    #App specific information
+  CLIENT_ID = 39380
+  CLIENT_SECRET = "5f8b4ead25"
+  USE_STAGE = true
+  WEPAY = WePay.new(CLIENT_ID, CLIENT_SECRET, USE_STAGE)
 end
