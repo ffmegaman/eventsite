@@ -78,7 +78,31 @@ class Pin < ActiveRecord::Base
     end   
     raise "Error - cannot create WePay account"
   end
+  # creates a checkout object using WePay API for this farmer
+  def create_checkout(redirect_uri)
+    # calculate app_fee as 4% of produce price
+    app_fee = self.price * 0.04
 
+    params = { 
+      :account_id => self.wepay_account_id, 
+      :short_description => "#{self.event_name} hosted by #{user.name}",
+      :type => :GOODS,
+      :amount => self.price,      
+      :app_fee => app_fee,
+      :fee_payer => :payee,     
+      :mode => :iframe,
+      :redirect_uri => redirect_uri
+    }
+    response = Eventsite::Application::WEPAY.call('/checkout/create', self.wepay_access_token, params)
+
+    if !response
+      raise "Error - no response from WePay"
+    elsif response['error']
+      raise "Error - " + response["error_description"]
+    end
+
+    return response
+  end
 
   
 end

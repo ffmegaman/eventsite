@@ -111,4 +111,27 @@ class PinsController < ApplicationController
       redirect_to @pin, notice: 'We successfully connected you to WePay!'
     end
   end
+
+  # GET /farmers/buy/1
+  def buy
+    redirect_uri = url_for(:controller => 'pins', :action => 'payment_success', :pin_id => params[:pin_id], :host => request.host_with_port)
+    @pin = Pin.find(params[:pin_id])
+    begin
+      @checkout = @pin.create_checkout(redirect_uri)
+    rescue Exception => e
+      redirect_to @pin, alert: e.message
+    end
+  end
+
+  # GET /farmers/payment_success/1
+  def payment_success
+    @pin = Pin.find(params[:pin_id])
+    if !params[:checkout_id]
+      return redirect_to @pin, alert: "Error - Checkout ID is expected"
+    end
+    if (params['error'] && params['error_description'])
+      return redirect_to @pin, alert: "Error - #{params['error_description']}"
+    end
+    redirect_to @pin, notice: "Thanks for the payment! You should receive a confirmation email shortly."
+  end
 end

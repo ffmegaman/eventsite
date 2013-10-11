@@ -11,3 +11,10 @@
  *= require_self
  *= require_tree .
  */
+
+#buy-now-button {margin: 20px 0px ;}
+
+@media only screen and (max-width: 480px) {
+	#wepay-iframe-div { width: 100%;}
+	#wepay-iframe-div #wepay_checkout_iframe { width: 100%; max-width: 330px; height: 520px;}
+}

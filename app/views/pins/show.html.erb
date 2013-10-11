@@ -22,6 +22,10 @@
 			<p>
 			  <%= @pin.user.name %>
 			</p>
+
+			<% if (@pin.has_wepay_account? && !@is_admin) %>
+				<%= link_to "Buy e-tickets for this event now!", "/pins/buy/#{@pin.id}", :class => 'btn btn-danger btn-large', :id => 'buy-now-button' %>
+			<% end %>
 			
 			<% if current_user == @pin.user %>
 				<%= link_to 'Edit', edit_pin_path(@pin) %> |
