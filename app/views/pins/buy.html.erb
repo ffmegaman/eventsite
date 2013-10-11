@@ -1,4 +1,4 @@
-<h1>Buy e-Tickets for <%= @pin.event_name %> from for <%= number_to_currency(@pin.price, :unit => "$") %></h1>
+<h1>Buy e-Tickets for <%= @pin.event_name %> for <%= number_to_currency(@pin.price, :unit => "$") %></h1>
 <p><%= link_to "← back to " + @pin.event_name, @pin =%></p>
 
 <div id="wepay-iframe-div">

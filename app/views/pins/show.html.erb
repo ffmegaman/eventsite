@@ -1,11 +1,3 @@
-<% if (@is_admin && (!@pin.has_valid_wepay_access_token? || !@pin.has_wepay_account?)) %>
-  <p>
-    <b>Please create an account to manage your money: </b>
-	<% redirect_uri = url_for(:controller => 'pins', :action => 'oauth', :pin_id => @pin.id, :host => request.host_with_port) %>
-    <a class="btn btn-primary" href="<%= @pin.wepay_authorization_url(redirect_uri) %>">Click here to create your account</a>
-  </p>
-<% end %>
-
 <div class="row">
 	<div class="span6 offset3">
 		<div class="well">
@@ -26,7 +18,17 @@
 			<% if (@pin.has_wepay_account? && !@is_admin) %>
 				<%= link_to "Buy e-tickets for this event now!", "/pins/buy/#{@pin.id}", :class => 'btn btn-danger btn-large', :id => 'buy-now-button' %>
 			<% end %>
-			
+
+			<% if (@is_admin && (!@pin.has_valid_wepay_access_token? || !@pin.has_wepay_account?)) %>
+			  <p>
+			    <b>Please sign into WePay to allow you to receive payments for this event: </b>
+				<% redirect_uri = url_for(:controller => 'pins', :action => 'oauth', :pin_id => @pin.id, :host => request.host_with_port) %>
+			    <a class="btn btn-primary" href="<%= @pin.wepay_authorization_url(redirect_uri) %>">Click here to sign in or create a new WePay account</a>
+			  </p>
+			<% end %>
+
+			</br>
+
 			<% if current_user == @pin.user %>
 				<%= link_to 'Edit', edit_pin_path(@pin) %> |
 			<% end %>
