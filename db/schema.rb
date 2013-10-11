@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131006093021) do
+ActiveRecord::Schema.define(:version => 20131010094244) do
 
   create_table "pins", :force => true do |t|
     t.string   "description"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(:version => 20131006093021) do
     t.string   "image_remote_url"
     t.string   "event_name"
     t.decimal  "price",              :precision => 8, :scale => 2
+    t.string   "wepay_access_token"
+    t.integer  "wepay_account_id"
   end
 
   add_index "pins", ["event_name"], :name => "index_pins_on_event_name"
