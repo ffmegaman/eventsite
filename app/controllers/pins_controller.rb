@@ -88,7 +88,7 @@ class PinsController < ApplicationController
   end
   
   def pin_params
-    params.require(:pin).permit(:event_name, :description, :image, :price)
+    params.require(:pin).permit(:event_name, :description, :image, :price, :pin_id)
   end
 
   # GET /farmers/oauth/1
