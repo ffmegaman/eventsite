@@ -1,5 +1,5 @@
 class PinsController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show, :oauth]
+  before_filter :authenticate_user!, except: [:index, :show, :oauth, :buy, :payment_success]
 
 
 
