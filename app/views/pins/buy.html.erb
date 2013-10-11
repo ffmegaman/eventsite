@@ -1,11 +1,11 @@
 <h1>Buy e-Tickets for <%= @pin.event_name %> from for <%= number_to_currency(@pin.price, :unit => "$") %></h1>
-<p><%= link_to "← back to " + @pin.event_name </p>
+<p><%= link_to "← back to " + @pin.event_name, @pin =%></p>
 
 <div id="wepay-iframe-div">
 	<script type="text/javascript" src="https://www.wepay.com/js/iframe.wepay.js">
 	</script>
 
 	<script type="text/javascript">
-		Eventsite.iframe_checkout("wepay-iframe-div", "<%= @checkout['checkout_uri'] %>");
+		WePay.iframe_checkout("wepay-iframe-div", "<%= @checkout['checkout_uri'] %>");
 	</script>
 </div>
