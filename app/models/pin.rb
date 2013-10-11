@@ -3,6 +3,7 @@ class Pin < ActiveRecord::Base
 
 
   validates :event_name, presence: true
+  validates :event_name, :length => { :in => 5..120}
   validates :description, presence: true
 	validates :user_id, presence: true
   validates :price, presence: true

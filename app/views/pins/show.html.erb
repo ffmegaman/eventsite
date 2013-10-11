@@ -7,12 +7,12 @@
 			  <%= @pin.event_name %>
 			</h2>	
 			<p>
-			  <%= @pin.description %>
+			  Description: <%= @pin.description %>
 			</p>
 			<p>
 				<b>Admission Fee:</b> $<%= @pin.price %>
 			<p>
-			  <%= @pin.user.name %>
+			  <b>Hosted by</b> <%= @pin.user.name %>
 			</p>
 
 			<% if (@pin.has_wepay_account? && !@is_admin) %>
