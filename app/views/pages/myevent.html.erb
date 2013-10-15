@@ -1,0 +1,7 @@
+<h1> Events I'm hosting </h1>
+
+</br>
+
+<div id="pins">
+  <%= render @pins = current_user.pins.order("created_at desc") %>
+</div>
