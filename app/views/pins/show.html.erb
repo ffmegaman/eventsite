@@ -15,10 +15,10 @@
 			  <b>Hosted by</b> <%= @pin.user.name %>
 			</p>
 
-			<% if (user.Paymentaccount.has_wepay_account? && !@is_admin) %>
+			<% if (@pin.has_wepay_account? && !@is_admin) %>
 				<%= link_to "Buy e-tickets for this event now!", "/pins/buy/#{@pin.id}", :class => 'btn btn-danger btn-large', :id => 'buy-now-button' %>
 			<% end %>
-			=begin
+
 			<% if (@is_admin && (!@pin.has_valid_wepay_access_token? || !@pin.has_wepay_account?)) %>
 			  <p>
 			    <b>Please sign into WePay to allow you to receive payments for this event: </b>
@@ -26,7 +26,6 @@
 			    <a class="btn btn-primary" href="<%= @pin.wepay_authorization_url(redirect_uri) %>">Click here to sign in or create a new WePay account</a>
 			  </p>
 			<% end %>
-			=end
 
 			</br>
 
