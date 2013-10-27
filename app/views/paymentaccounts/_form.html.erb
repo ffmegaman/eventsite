@@ -1,0 +1,16 @@
+<h2>Agreements</h2>
+</br>
+<p>Eventsite has partnered up with WePay in order to allow you to accept payments from your guests. All transactions are facilitated through WePay. You must check to agree that you will allow WePay to handle your payment information.</p>
+</br>
+
+<%= simple_form_for(@paymentaccount) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :agreement, label: "Check to agree" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

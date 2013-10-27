@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131010094244) do
+ActiveRecord::Schema.define(:version => 20131025081152) do
+
+  create_table "paymentaccounts", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "agreement"
+    t.string   "wepay_access_token"
+    t.integer  "wepay_account_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "paymentaccounts", ["user_id"], :name => "index_paymentaccounts_on_user_id"
 
   create_table "pins", :force => true do |t|
     t.string   "description"
@@ -27,6 +38,9 @@ ActiveRecord::Schema.define(:version => 20131010094244) do
     t.decimal  "price",              :precision => 8, :scale => 2
     t.string   "wepay_access_token"
     t.integer  "wepay_account_id"
+    t.integer  "guest_amount"
+    t.string   "location"
+    t.integer  "finance_id"
   end
 
   add_index "pins", ["event_name"], :name => "index_pins_on_event_name"

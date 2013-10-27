@@ -85,7 +85,7 @@ class Pin < ActiveRecord::Base
     app_fee = self.price * 0.04
 
     params = { 
-      :account_id => self.wepay_account_id, 
+      :account_id => user.Paymentaccount.wepay_account_id, 
       :short_description => "#{self.event_name} hosted by #{user.name}",
       :type => :GOODS,
       :amount => self.price,      
@@ -94,7 +94,7 @@ class Pin < ActiveRecord::Base
       :mode => :iframe,
       :redirect_uri => redirect_uri
     }
-    response = Eventsite::Application::WEPAY.call('/checkout/create', self.wepay_access_token, params)
+    response = Eventsite::Application::WEPAY.call('/checkout/create', user.Paymentaccount.wepay_access_token, params)
 
     if !response
       raise "Error - no response from WePay"

@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @paymentaccount.user_id %>
+</p>
+
+<% if (@is_admin && (!@paymentaccount.has_valid_wepay_access_token? || !@paymentaccount.has_wepay_account?)) %>
+  <p>
+    <b>Please create an account with Wepay to manage your money: </b>
+  </p>
+	<% redirect_uri = url_for(:controller => 'paymentaccounts', :action => 'oauth', :paymentaccount_id => @paymentaccount.id, :host => request.host_with_port) %>
+    <a class="btn btn-primary" href="<%= @paymentaccount.wepay_authorization_url(redirect_uri) %>">Click here to create your Wepay account</a>
+<% end %>
+
+</br>
+</br>
+
+
+<%= link_to 'Edit', edit_paymentaccount_path(@paymentaccount) %> |
+<%= link_to 'Back', paymentaccounts_path %>

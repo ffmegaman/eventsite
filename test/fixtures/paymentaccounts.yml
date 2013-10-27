@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  agreement: false
+  wepay_access_token: MyString
+  wepay_account_id: 1
+
+two:
+  user_id: 1
+  agreement: false
+  wepay_access_token: MyString
+  wepay_account_id: 1

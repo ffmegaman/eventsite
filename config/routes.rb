@@ -1,4 +1,7 @@
 Eventsite::Application.routes.draw do
+  resources :paymentaccounts
+
+
   resources :pins
 
 
@@ -6,8 +9,11 @@ Eventsite::Application.routes.draw do
 
   devise_for :installs
 
+  #get 'paymentaccounts' => 'paymentaccounts#index'
+
   #for wepay auth
-  match '/pins/:action(/:pin_id)', :controller => 'pins'
+  #match '/pins/:action(/:pin_id)', :controller => 'pins'
+  match '/paymentaccounts/:action(/:paymentaccount_id)', :controller => 'paymentaccounts'
 
   get 'about' => 'pages#about'
 

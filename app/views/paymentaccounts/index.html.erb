@@ -1,0 +1,29 @@
+<h1>Listing paymentaccounts</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Agreement</th>
+    <th>Wepay access token</th>
+    <th>Wepay account</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @paymentaccounts.each do |paymentaccount| %>
+  <tr>
+    <td><%= paymentaccount.user_id %></td>
+    <td><%= paymentaccount.agreement %></td>
+    <td><%= paymentaccount.wepay_access_token %></td>
+    <td><%= paymentaccount.wepay_account_id %></td>
+    <td><%= link_to 'Show', paymentaccount %></td>
+    <td><%= link_to 'Edit', edit_paymentaccount_path(paymentaccount) %></td>
+    <td><%= link_to 'Destroy', paymentaccount, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Paymentaccount', new_paymentaccount_path %>
