@@ -12,7 +12,7 @@ Eventsite::Application.routes.draw do
   #get 'paymentaccounts' => 'paymentaccounts#index'
 
   #for wepay auth
-  #match '/pins/:action(/:pin_id)', :controller => 'pins'
+  match '/pins/:action(/:pin_id)', :controller => 'pins'
   match '/paymentaccounts/:action(/:paymentaccount_id)', :controller => 'paymentaccounts'
 
   get 'about' => 'pages#about'
