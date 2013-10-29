@@ -15,6 +15,12 @@
 			  <b>Hosted by</b> <%= @pin.user.name %>
 			</p>
 
+			<% if (@related_paymentaccount.has_wepay_account? && !@is_admin) %>
+				<%= link_to "Buy e-tickets for this event now!", "/pins/buy/#{@pin.id}", :class => 'btn btn-danger btn-large', :id => 'buy-now-button' %>
+			<% end %>
+
+			<% if false %> 
+			this is a comment out block
 			<% if (@pin.has_wepay_account? && !@is_admin) %>
 				<%= link_to "Buy e-tickets for this event now!", "/pins/buy/#{@pin.id}", :class => 'btn btn-danger btn-large', :id => 'buy-now-button' %>
 			<% end %>
@@ -25,6 +31,8 @@
 				<% redirect_uri = url_for(:controller => 'pins', :action => 'oauth', :pin_id => @pin.id, :host => request.host_with_port) %>
 			    <a class="btn btn-primary" href="<%= @pin.wepay_authorization_url(redirect_uri) %>">Click here to sign in or create a new WePay account</a>
 			  </p>
+			<% end %>
+			end comment block
 			<% end %>
 
 			</br>

@@ -20,6 +20,9 @@ class PinsController < ApplicationController
   def show
     @pin = Pin.find(params[:id])
     @is_admin = current_user && current_user.id == @pin.user_id
+    @related_paymentaccount = Paymentaccount.find_by_user_id(@pin.user_id)
+
+
 
     respond_to do |format|
       format.html # show.html.erb
