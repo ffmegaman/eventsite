@@ -85,6 +85,7 @@ class Pin < ActiveRecord::Base
     app_fee = self.price * 0.04
     #correct_pin = self.find(params[:id])
     correct_wepay_account_id = Paymentaccount.find_by_user_id(self.user_id).wepay_account_id
+    correct_wepay_access_token = Paymentaccount.find_by_user_id(self.user_id).wepay_access_token
 
     params = { 
       :account_id => correct_wepay_account_id, 
@@ -96,7 +97,7 @@ class Pin < ActiveRecord::Base
       :mode => :iframe,
       :redirect_uri => redirect_uri
     }
-    response = Eventsite::Application::WEPAY.call('/checkout/create', self.wepay_access_token, params)
+    response = Eventsite::Application::WEPAY.call('/checkout/create', correct_wepay_access_token, params)
 
     if !response
       raise "Error - no response from WePay"
