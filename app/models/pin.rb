@@ -83,10 +83,11 @@ class Pin < ActiveRecord::Base
   def create_checkout(redirect_uri)
     # calculate app_fee as 4% of produce price
     app_fee = self.price * 0.04
-    correct_pin = self.find(params[:id])
+    #correct_pin = self.find(params[:id])
+    correct_wepay_account_id = Paymentaccount.find_by_user_id(self.user_id).wepay_account_id
 
     params = { 
-      :account_id => Paymentaccount.find_by_user_id(correct_pin.user_id).wepay_account_id, 
+      :account_id => correct_wepay_account_id, 
       :short_description => "#{self.event_name} hosted by #{user.name}",
       :type => :GOODS,
       :amount => self.price,      
