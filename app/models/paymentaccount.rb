@@ -49,7 +49,7 @@ class Paymentaccount < ActiveRecord::Base
 	# creates a WePay account for this farmer with the farm's name
 	def create_wepay_account
 	  if self.has_wepay_access_token? && !self.has_wepay_account?
-	    params = { :name => self.user_id, :description => "Connect Wepay account to Eventsite " }			
+	    params = { :name => user.name, :description => "Connect Wepay account to Eventsite " }			
 	    response = Eventsite::Application::WEPAY.call("/account/create", self.wepay_access_token, params)
 
 	    if response["account_id"]
