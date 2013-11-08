@@ -4,8 +4,10 @@ Eventsite::Application.routes.draw do
 
   resources :pins
 
+  #Below is original devise_for :users
+  #devise_for :users
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
 
   devise_for :installs
 
@@ -18,6 +20,8 @@ Eventsite::Application.routes.draw do
   get 'about' => 'pages#about'
 
   get 'myevent' => 'pages#myevent'
+
+  get 'newpaymentaccount' => 'paymentaccounts#new'
 
 
   root :to => 'pins#index'

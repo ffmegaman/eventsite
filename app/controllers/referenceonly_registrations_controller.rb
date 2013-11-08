@@ -1,10 +1,7 @@
-class RegistrationsController < Devise::RegistrationsController
+class Devise::RegistrationsController < DeviseController
   prepend_before_filter :require_no_authentication, :only => [ :new, :create, :cancel ]
   prepend_before_filter :authenticate_scope!, :only => [:edit, :update, :destroy]
 
-  def new
-    super
-  end
   # GET /resource/sign_up
   def new
     build_resource({})
@@ -131,30 +128,5 @@ class RegistrationsController < Devise::RegistrationsController
 
   def account_update_params
     devise_parameter_sanitizer.sanitize(:account_update)
-  end
-
-  # GET /farmers/oauth/1
-  def oauth
-    if !params[:code]
-      return redirect_to('/')
-    end
-
-    redirect_uri = url_for(:controller => 'registrations', :action => 'oauth', :user_id => params[:user_id], :host => request.host_with_port)
-    @user = User.find(params[:user_id])
-    begin
-      @user.request_wepay_access_token(params[:code], redirect_uri)
-    rescue Exception => e
-      error = e.message
-    end
-
-    if error
-      redirect_to @user, alert: error
-    else
-      redirect_to @user, notice: 'We successfully connected you to WePay!'
-    end
-  end
-
-  def update
-    super
   end
 end

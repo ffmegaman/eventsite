@@ -1,3 +1,3 @@
-NOTE: Must connect checkout to wepay_account info stored in paymentaccount model.
-
+NOTE: Successfully redirected new user sign up straight to paymentaccount.new
+next step, Get list of guests attending a specific event.
 by [Philip Nguyen]

@@ -46,7 +46,7 @@ class PaymentaccountsController < ApplicationController
 
     respond_to do |format|
       if @paymentaccount.save
-        format.html { redirect_to @paymentaccount, notice: 'Paymentaccount was successfully created.' }
+        format.html { redirect_to @paymentaccount } #notice: 'Paymentaccount was successfully created.' }
         format.json { render json: @paymentaccount, status: :created, location: @paymentaccount }
       else
         format.html { render action: "new" }
